@@ -20,6 +20,7 @@ use default export.
 ```jsx
 import { ChildComponent, ChildComponent2 } from './child'
 import ChildComponent_default from './default_child'
+import ChildComponent_props from './props_child_component'
 
 export function ParentComponent () {
   return (
@@ -28,6 +29,7 @@ export function ParentComponent () {
       <ChildComponent />
       <ChildComponent2 />
       <ChildComponent_default />
+      <ChildComponent_props name='john' color='yellow' id='3' />
     </div>
   )
 }
@@ -61,10 +63,12 @@ export default ChildComponent_default
 ```
 ### props_child_component.jsx (test3)
 ```jsx
-function ChildComponent_props (props) {
+function ChildComponent_props ({ name, id, color }) {
   return (
     <div className='ChildComponent_props'>
-      props name is {props.name}
+      props name is {name}
+      id is {id}
+      color is {color}
     </div>
   )
 }
@@ -110,14 +114,24 @@ test('no test', () => {
       >
         Child component default
       </div>
+      <div
+        class="ChildComponent_props"
+      >
+        props name is 
+        john
+        id is 
+        3
+        color is 
+        yellow
+      </div>
     </div>
   </div>
 </body>
 ```
-# 
+# alert : you need to pass a test one by one . I dont know how to clear the mock .
 ## test 1 : mock the name import module (child.jsx)
 ### auto mock :
-It set all export in the file to vi.fn()
+It set all export in the file to vi.fn() ,so it not show in html
 ```javascript
 test('auto mock', () => {
   vi.mock('./child.jsx')
@@ -254,3 +268,12 @@ vi.mock('path',()=>{
 ```
 [mock guide](https://vitest.dev/guide/mocking.html#mocking)
 pay attenttion to how to partial mock module
+## dont know how to prevent mock pollution
+need to figure out 
+- clearMocks
+- mockReset
+- restoreMocks
+- doMock  mock unmock doUnmock
+- importMock
+- resetModules
+- set the config?
