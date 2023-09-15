@@ -244,7 +244,7 @@ vi.mock('path',()=>{
   return {/*this is object*/}           
 })
 ```
-### in the object
+ in the object
 ```javascript
 {
     default:vi.fn(()=> implementation ),
